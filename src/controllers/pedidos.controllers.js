@@ -18,8 +18,8 @@ export const crearPedido = async (req, res) => {
 export const obtenerListaPedidos = async (req, res) => {
   try {
     //buscar en la BD la collection de pedidos
-    const pedidos = await Pedido.find({}).populate({
-      path: 'productos',
+    const pedidos = await Pedido.find().populate({
+      path: 'productos.producto',
       select: '-_id -__v', // Opcional: selecciona los campos que deseas excluir, como _id y __v
     });
 
