@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const pedidoSchema = new Schema({
+  usuario: { type: mongoose.Schema.Types.ObjectId, ref: 'usuario' },
   fechaPedido: {
     type: 'Date',
     default: Date.now(),

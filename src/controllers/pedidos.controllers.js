@@ -18,10 +18,15 @@ export const crearPedido = async (req, res) => {
 export const obtenerListaPedidos = async (req, res) => {
   try {
     //buscar en la BD la collection de pedidos
-    const pedidos = await Pedido.find().populate({
-      path: 'productos.producto',
-      select: '-_id -__v', // Opcional: selecciona los campos que deseas excluir, como _id y __v
-    });
+    const pedidos = await Pedido.find()
+      .populate({
+        path: 'productos.producto',
+        select: '-_id -__v', // Opcional: selecciona los campos que deseas excluir, como _id y __v
+      })
+      .populate({
+        path: 'usuario',
+        select: '-_id -__v -password -rol', //  Opcional: selecciona los campos que deseas excluir, como _id y __v
+      });
 
     res.status(200).json(pedidos);
   } catch (error) {
